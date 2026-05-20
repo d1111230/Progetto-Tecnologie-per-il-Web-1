@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand text-uppercase" href="${pageContext.request.contextPath}/index">
+            <i class="fas fa-arrow-left me-2"></i>Torna alla Home
+        </a>
+        <button class="btn btn-outline-warning btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#carrelloLaterale">
+            <i class="fas fa-shopping-cart"></i> Carrello 
+            <span class="badge bg-warning text-dark">
+            
+            <% 
+            /*
+               1. Condizione: Controlla se l'oggetto "carrello" esiste nella sessione attuale.
+               2. Se esiste (?): Esegue il cast a java.util.Map e ne calcola la dimensione (.size()).
+               3. Se NON esiste (:): Stampa semplicemente 0.
+            */
+        %>
+            
+                <%= (session.getAttribute("carrello") != null) ? ((java.util.Map)session.getAttribute("carrello")).size() : 0 %>
+            </span>	
+        </button>
+    </div>
+</nav>
