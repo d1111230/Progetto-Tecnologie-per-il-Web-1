@@ -30,7 +30,7 @@
                         <div class="card-body">
                             <i class="fas fa-book-open fa-3x text-warning mb-3"></i>
                             <h4 class="card-title text-uppercase">Gestione Menù</h4>
-                            <p class="card-text text-muted small">Aggiungi, modifica o elimina i piatti dal menù.</p>
+                            <p class="card-text text-muted small">Aggiungi o elimina i piatti dal menù.</p>
                             <a href="GestioneMenu" class="btn btn-warning fw-bold w-100">ENTRA</a>
                         </div>
                     </div>
@@ -66,6 +66,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     
-</body>
 </body>
 </html>
