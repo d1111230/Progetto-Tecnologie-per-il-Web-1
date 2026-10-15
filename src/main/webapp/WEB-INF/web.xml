@@ -38,84 +38,27 @@
     <servlet-name>AreaPrivata</servlet-name>
     <url-pattern>/privato/AreaPrivata</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>Logout</display-name>
-    <servlet-name>Logout</servlet-name>
-    <servlet-class>it.ristorante.servlet.privato.Logout</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Logout</servlet-name>
-    <url-pattern>/Logout</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>GestioneMenu</display-name>
-    <servlet-name>GestioneMenu</servlet-name>
-    <servlet-class>it.ristorante.servlet.privato.GestioneMenu</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>GestioneMenu</servlet-name>
-    <url-pattern>/GestioneMenu</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>EliminaPiatto</display-name>
-    <servlet-name>EliminaPiatto</servlet-name>
-    <servlet-class>it.ristorante.servlet.privato.EliminaPiatto</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>EliminaPiatto</servlet-name>
-    <url-pattern>/EliminaPiatto</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>VisualizzaOrdini</display-name>
-    <servlet-name>VisualizzaOrdini</servlet-name>
-    <servlet-class>it.ristorante.servlet.privato.VisualizzaOrdini</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>VisualizzaOrdini</servlet-name>
-    <url-pattern>/VisualizzaOrdini</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>Ordine</display-name>
-    <servlet-name>Ordine</servlet-name>
-    <servlet-class>it.ristorante.beans.Ordine</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Ordine</servlet-name>
-    <url-pattern>/Ordine</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>AggiungiPiatto</display-name>
-    <servlet-name>AggiungiPiatto</servlet-name>
-    <servlet-class>it.ristorante.servlet.privato.menu.AggiungiPiatto</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AggiungiPiatto</servlet-name>
-    <url-pattern>/AggiungiPiatto</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>AggiungiPersonale</display-name>
-    <servlet-name>AggiungiPersonale</servlet-name>
-    <servlet-class>it.ristorante.servlet.privato.personale.AggiungiPersonale</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AggiungiPersonale</servlet-name>
-    <url-pattern>/AggiungiPersonale</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>InviaPrenotazione</display-name>
-    <servlet-name>InviaPrenotazione</servlet-name>
-    <servlet-class>it.ristorante.servlet.InviaPrenotazione</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>InviaPrenotazione</servlet-name>
-    <url-pattern>/InviaPrenotazione</url-pattern>
-  </servlet-mapping>
+
+  <!--
+    Nota: Logout, GestioneMenu, EliminaPiatto, VisualizzaOrdini, AggiungiPiatto e
+    AggiungiPersonale sono gia' registrate tramite l'annotazione @WebServlet
+    direttamente nella loro classe Java (es. "/privato/GestioneMenu"), quindi non
+    serve (ed e' sbagliato) ripeterle qui con un url-pattern diverso.
+    Le voci "Ordine" (puntava a un semplice Bean, non a una Servlet) e
+    "InviaPrenotazione" (la classe non esiste nel progetto) sono state rimosse
+    perche' non funzionanti.
+  -->
+
+  <!--
+    Configurazione del cookie di sessione (JSESSIONID) usato per il login.
+    - session-timeout: dopo 30 minuti di inattività la sessione (e quindi il login) scade automaticamente.
+    - http-only: impedisce a JavaScript lato client di leggere il cookie di sessione,
+      proteggendo il JSESSIONID da furti tramite attacchi XSS (Session Hijacking).
+  -->
+  <session-config>
+    <session-timeout>30</session-timeout>
+    <cookie-config>
+      <http-only>true</http-only>
+    </cookie-config>
+  </session-config>
 </web-app>

@@ -44,7 +44,7 @@
 	<header class="masthead">
 		<div class="container">
 			<div
-				class="masthead-subheading text-gold animate__animated animate__fadeInDown">Benvenuti da</div>
+				class="masthead-subheading text-white animate__animated animate__fadeInDown">Benvenuti da</div>
 			<div
 				class="masthead-heading text-uppercase animate__animated animate__fadeInUp">Idea Bistrot</div>
 			<a
@@ -56,7 +56,7 @@
 	<section class="page-section" id="services">
             <div class="container">
                 <div class="text-center mb-5">
-                    <h2 class="section-heading text-uppercase text-gold">I Nostri Servizi</h2>
+                    <h2 class="section-heading text-uppercase text-white">I Nostri Servizi</h2>
                     <h3 class="section-subheading text-muted">Qualità e passione in ogni dettaglio.</h3>
                 </div>
                 <div class="row text-center">
@@ -103,6 +103,66 @@
 </div>
         </section>
 
+<section class="page-section bg-bistrot-dark py-5" id="piatti-gallery">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-heading text-uppercase text-white">Le Nostre Specialità</h2>
+            <h3 class="section-subheading text-muted">Un viaggio tra i sapori autentici della nostra cucina.</h3>
+        </div>
+        
+        <div id="carouselBistrot" class="carousel slide carousel-fade shadow-lg rounded-4 overflow-hidden border-gold-thin" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselBistrot" data-bs-slide-to="0" class="active" aria-current="true"></button>
+                <button type="button" data-bs-target="#carouselBistrot" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#carouselBistrot" data-bs-slide-to="2"></button>
+                <button type="button" data-bs-target="#carouselBistrot" data-bs-slide-to="3"></button>
+            </div>
+            
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="4000">
+                    <img src="assets/img/carosello/carosello-burrata.jpg" class="d-block w-100 carousel-img-bistrot" alt="Burrata e crudo di Parma">
+                    <div class="carousel-caption d-none d-md-block bg-caption-dark rounded-pill px-4 py-2">
+                        <h5 class="text-white mb-0">L'antipasto più italiano che esista</h5>
+                        <p class="small mb-0">Burrata e crudo di Parma con olio EVO</p>
+                    </div>
+                </div>
+                
+                <div class="carousel-item" data-bs-interval="4000">
+                    <img src="assets/img/carosello/carosello-tartare.jpg" class="d-block w-100 carousel-img-bistrot" alt="Tartare di Fassona">
+                    <div class="carousel-caption d-none d-md-block bg-caption-dark rounded-pill px-4 py-2">
+                        <h5 class="text-white mb-0">Antipasto di carne</h5>
+                        <p class="small mb-0">Tartare di Fassona.</p>
+                    </div>
+                </div>
+                
+                <div class="carousel-item" data-bs-interval="4000">
+                    <img src="assets/img/carosello/carosello-pizza.jpg" class="d-block w-100 carousel-img-bistrot" alt="Pizza margherita">
+                    <div class="carousel-caption d-none d-md-block bg-caption-dark rounded-pill px-4 py-2">
+                        <h5 class="text-white mb-0">Le Pizze</h5>
+                        <p class="small mb-0">La nostra margherita.</p>
+                    </div>
+                </div>
+
+                <div class="carousel-item" data-bs-interval="4000">
+                    <img src="assets/img/carosello/carosello-tomahawk.jpg" class="d-block w-100 carousel-img-bistrot" alt="Tomahawk">
+                    <div class="carousel-caption d-none d-md-block bg-caption-dark rounded-pill px-4 py-2">
+                        <h5 class="text-white mb-0">Tagli Selezionati</h5>
+                        <p class="small mb-0">Cotture sapienti per esaltare ogni singola fibra della nostra Tomahawk.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselBistrot" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                <span class="visually-hidden">Precedente</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselBistrot" data-bs-slide="next">
+                <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                <span class="visually-hidden">Successivo</span>
+            </button>
+        </div>
+    </div>
+</section>
 
 	<section class="page-section" id="about">
     <div class="container">
@@ -172,17 +232,7 @@
                 </div>
             </li>
 
-            <li class="timeline-inverted">
-                <div class="timeline-image">
-                    <h4>
-                        Vieni
-                        <br />
-                        a trovarci
-                        <br />
-                        a Tavola!
-                    </h4>
-                </div>
-            </li>
+            
         </ul>
     </div>
 </section>

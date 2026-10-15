@@ -11,7 +11,10 @@ import java.util.Map;
 
 @WebServlet("/RimuoviDalCarrello")
 public class RimuoviDalCarrello extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    // POST: l'operazione modifica il carrello, quindi non si fa con un semplice link (GET)
+    @SuppressWarnings("unchecked")
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nomePiatto = request.getParameter("nomePiatto");
         HttpSession session = request.getSession();
         Map<String, Integer> carrello = (Map<String, Integer>) session.getAttribute("carrello");
@@ -23,5 +26,10 @@ public class RimuoviDalCarrello extends HttpServlet {
 
         // Torna al menu e riapre la tendina per far vedere che è sparito
         response.sendRedirect("mostraMenu?apriCarrello=true");
+    }
+
+    // Se qualcuno apre l'indirizzo scrivendolo nel browser (GET) non succede niente
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.sendRedirect("mostraMenu");
     }
 }

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
-<%@ page import="java.sql.*" %>
 <%@ page import="it.ristorante.beans.Piatto" %>
+<%@ page import="it.ristorante.beans.RigaCarrello" %>
+<%@ page import="jakarta.servlet.http.Cookie" %>
 
 <!DOCTYPE html>
 <html lang="it">
@@ -28,72 +29,73 @@
     
 <div id="lista-carrello">
         <% 
-        Map<String, Integer> carrello = (Map<String, Integer>) session.getAttribute("carrello");
-        double totaleComplessivo = 0; // Inizializziamo il totale a zero
+        // Il carrello (righe, prezzi e totale) e' preparato da MenuServlet: qui si stampa soltanto
+        List<RigaCarrello> righeCarrello = (List<RigaCarrello>) request.getAttribute("righeCarrello");
+        Double totaleAttr = (Double) request.getAttribute("totaleCarrello");
+        double totaleComplessivo = (totaleAttr != null) ? totaleAttr : 0;
+        boolean carrelloVuoto = (righeCarrello == null || righeCarrello.isEmpty());
 
-        if (carrello == null || carrello.isEmpty()) {
+        if (carrelloVuoto) {
         %>
             <p class="text-center text-muted">Il carrello è vuoto</p>
         <% 
         } else {
-            // Apriamo una connessione veloce per recuperare i prezzi dei piatti nel carrello
-            try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                Connection connPrezzi = DriverManager.getConnection("jdbc:mysql://localhost:3306/ristorante_db", "root", "root");
-
-                for (Map.Entry<String, Integer> entry : carrello.entrySet()) {
-                    String nomePiatto = entry.getKey();
-                    int qta = entry.getValue();
-                    double prezzoUnitario = 0;
-
-                    // Cerchiamo il prezzo del piatto singolo
-                    PreparedStatement psP = connPrezzi.prepareStatement("SELECT prezzo FROM piatti WHERE nome = ?");
-                    psP.setString(1, nomePiatto);
-                    ResultSet rsP = psP.executeQuery();
-                    if(rsP.next()) {
-                        prezzoUnitario = rsP.getDouble("prezzo");
-                    }
-                    
-                    double subtotale = prezzoUnitario * qta;
-                    totaleComplessivo += subtotale; // Sommiamo al totale generale
+            for (RigaCarrello riga : righeCarrello) {
         %>
             <div class="d-flex justify-content-between align-items-center mb-3 p-2 border-bottom border-secondary">
                 <div>
-                    <h6 class="mb-0 text-white"><%= nomePiatto %></h6>
-                    <small class="text-warning"><%= qta %> x <%= String.format("%.2f", prezzoUnitario) %>€</small>
+                    <h6 class="mb-0 text-white"><%= riga.getNome() %></h6>
+                    <small class="text-warning"><%= riga.getQuantita() %> x <%= String.format("%.2f", riga.getPrezzoUnitario()) %>€</small>
                 </div>
                 <div class="text-end">
-                    <span class="fw-bold text-white"><%= String.format("%.2f", subtotale) %>€</span><br>
-                    <a href="RimuoviDalCarrello?nomePiatto=<%= nomePiatto %>" class="text-danger small ms-2">
-                        <i class="fas fa-trash-alt"></i>
-                    </a>
+                    <span class="fw-bold text-white"><%= String.format("%.2f", riga.getSubtotale()) %>€</span><br>
+                    <%-- POST: togliere un piatto modifica il carrello, quindi e' un form e non un link --%>
+                    <form action="RimuoviDalCarrello" method="post" class="d-inline">
+                        <input type="hidden" name="nomePiatto" value="<%= riga.getNome().replace("\"", "&quot;") %>">
+                        <button type="submit" class="btn btn-link text-danger small p-0 ms-2" aria-label="Rimuovi dal carrello">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         <% 
-                }
-                connPrezzi.close();
-            } catch (Exception e) {
-                out.println("Errore calcolo totale: " + e.getMessage());
             }
         } 
         %>
     </div>
 
-    <% if (carrello != null && !carrello.isEmpty()) { %>
+    <% if (!carrelloVuoto) { %>
        <div class="mt-4 p-3 rounded d-flex justify-content-between align-items-center box-totale-carrello">
             <h5 class="mb-0 text-uppercase text-white" style="font-size: 0.9rem;">Totale Ordine:</h5>
             <h4 class="mb-0 text-warning fw-bold"><%= String.format("%.2f", totaleComplessivo) %>€</h4>
         </div>
 
+        <%
+            // Cookie "ricordami": se il cliente ha già ordinato in passato, precompiliamo
+            // nome ed email leggendo i cookie salvati da ConfermaOrdine (non sono dati sensibili).
+            String nomeSalvato = "";
+            String emailSalvata = "";
+            Cookie[] cookiesOrdine = request.getCookies();
+            if (cookiesOrdine != null) {
+                for (Cookie c : cookiesOrdine) {
+                    if (c.getName().equals("nomeRitiro")) {
+                        nomeSalvato = c.getValue();
+                    } else if (c.getName().equals("emailCliente")) {
+                        emailSalvata = c.getValue();
+                    }
+                }
+            }
+        %>
+
         <form action="ConfermaOrdine" method="POST" class="mt-4 p-3 border border-warning rounded">
             <h6 class="text-warning mb-3">Dati per il ritiro</h6>
             <div class="mb-2">
                 <label class="small">Nominativo</label>
-                <input type="text" name="nome_ritiro" class="form-control form-control-sm bg-dark text-white border-secondary" required>
+                <input type="text" name="nome_ritiro" value="<%= nomeSalvato %>" class="form-control form-control-sm bg-dark text-white border-secondary" required>
             </div>
             <div class="mb-2">
-                <label class="small">Email (per sconto 10%)</label>
-                <input type="email" name="email_cliente" class="form-control form-control-sm bg-dark text-white border-secondary" required>
+                <label class="small">Email</label>
+                <input type="email" name="email_cliente" value="<%= emailSalvata %>" class="form-control form-control-sm bg-dark text-white border-secondary" required>
             </div>
             <div class="mb-3">
                 <label class="small">Ora ritiro</label>

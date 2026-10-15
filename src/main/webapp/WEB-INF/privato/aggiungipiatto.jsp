@@ -40,12 +40,11 @@
                     <label for="categoria" class="form-label text-warning fw-bold">Categoria</label>
                     <select class="form-select bg-dark text-white border-secondary" id="categoria" name="categoria" required>
                         <option value="" disabled selected>Seleziona una categoria</option>
-                        <option value="Antipasti">Antipasti</option>
-                        <option value="Primi">Primi</option>
-                        <option value="Secondi">Secondi</option>
-                        <option value="Pizze">Pizze</option>
-                        <option value="Dolci">Dolci</option>
-                        <option value="Bevande">Bevande</option>
+                        <option value="antipasti">Antipasti</option>
+                        <option value="pizze">Le Nostre Pizze</option>
+                        <option value="pizze-gourmet">Pizze Gourmet</option>
+                        <option value="carni">Le Nostre Carni</option>
+                        <option value="beverage">Beverage</option>
                     </select>
                 </div>
 

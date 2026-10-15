@@ -27,10 +27,10 @@
         </div>
 
         <div class="card table-admin p-4 shadow">
-            <table class="table table-dark table-hover align-middle">
             <a href="${pageContext.request.contextPath}/privato/AggiungiPiatto" class="btn btn-warning fw-bold mb-3">
-    					<i class="fas fa-plus"></i> Aggiungi Piatto
-					</a>
+                <i class="fas fa-plus"></i> Aggiungi Piatto
+            </a>
+            <table class="table table-dark table-hover align-middle">
         <thead>
             <tr class="text-warning text-uppercase">
                 <th>Nome Piatto</th>
@@ -55,11 +55,14 @@
     		<td><%= String.format("%.2f", p.getPrezzo()) %> €</td>
     		<td><span class="badge bg-secondary"><%= p.getCategoria() %></span></td>
     		<td class="text-center">
-        		<a href="${pageContext.request.contextPath}/privato/EliminaPiatto?nome=<%= p.getNome() %>"
-           			class="btn btn-danger btn-sm"
-           			onclick="return confirm('Sei sicuro di voler eliminare questo piatto dal menù?');">
-            		<i class="fas fa-trash-alt"></i> Elimina
-        		</a>
+        		<%-- POST: eliminare un piatto modifica il database, quindi e' un form e non un link --%>
+        		<form action="${pageContext.request.contextPath}/privato/EliminaPiatto" method="post" class="d-inline"
+        		      onsubmit="return confirm('Sei sicuro di voler eliminare questo piatto dal menù?');">
+        		    <input type="hidden" name="nome" value="<%= p.getNome().replace("\"", "&quot;") %>">
+        		    <button type="submit" class="btn btn-danger btn-sm">
+        		        <i class="fas fa-trash-alt"></i> Elimina
+        		    </button>
+        		</form>
     		</td>
 		</tr>
 		<% 
@@ -73,6 +76,7 @@
     		} 
 		%>
         </tbody>
+            </table>
         </div>
     </div>
 

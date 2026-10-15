@@ -4,9 +4,11 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.WebServlet;
 import java.io.IOException;
-import java.sql.*;
-import java.util.*;
-import it.ristorante.beans.Piatto; // Assicurati che il nome del tuo bean sia corretto (Patto o Piatto)
+import java.util.ArrayList;
+import java.util.List;
+
+import it.ristorante.beans.Piatto;
+import it.ristorante.dao.PiattoDAO;
 
 @WebServlet("/privato/GestioneMenu")
 public class GestioneMenu extends HttpServlet {
@@ -20,25 +22,8 @@ public class GestioneMenu extends HttpServlet {
         }
 
         List<Piatto> lista = new ArrayList<>();
-
-        // Connessione al DB per estrarre tutti i piatti presenti nel menù
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ristorante_db", "root", "root");
-            
-            String sql = "SELECT * FROM piatti";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                Piatto p = new Piatto();
-                p.setNome(rs.getString("nome"));
-                p.setDescrizione(rs.getString("descrizione"));
-                p.setPrezzo(rs.getDouble("prezzo"));
-                p.setCategoria(rs.getString("categoria"));
-                lista.add(p);
-            }
-            conn.close();
+            lista = new PiattoDAO().getMenuCompleto();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -47,6 +32,4 @@ public class GestioneMenu extends HttpServlet {
         request.setAttribute("listaPiatti", lista);
         request.getRequestDispatcher("/WEB-INF/privato/gestionemenu.jsp").forward(request, response);
     }
-
-
 }

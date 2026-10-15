@@ -3,7 +3,8 @@ package it.ristorante.servlet.privato;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import java.io.IOException;
-import java.sql.*;
+
+import it.ristorante.dao.AdminDAO;
 
 public class Login extends HttpServlet {
     
@@ -16,22 +17,8 @@ public class Login extends HttpServlet {
         boolean credenzialiValide = false;
         
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ristorante_db", "root", "root");
-            
-            // Interroghiamo la tabella controllando username (dove c'è l'email) e password
-            String sql = "SELECT * FROM admin WHERE username = ? AND password = ?";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, emailInserita);
-            ps.setString(2, passwordInserita);
-            
-            ResultSet rs = ps.executeQuery();
-            
-            if (rs.next()) {
-                credenzialiValide = true;
-            }
-            
-            conn.close();
+            // La query sulla tabella admin sta nel DAO
+            credenzialiValide = new AdminDAO().verificaCredenziali(emailInserita, passwordInserita);
         } catch (Exception e) {
             e.printStackTrace();
         }

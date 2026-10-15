@@ -8,12 +8,12 @@ import java.io.IOException;
 public class AreaPrivata extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
         
         // CONTROLLO DI SICUREZZA:
         // Se l'attributo "admin" non esiste in sessione, significa che non ha fatto il login
-        if (session.getAttribute("admin") == null) {
-            response.sendRedirect("RichiestaLogin"); // Lo rispediamo fuori
+        if (session == null || session.getAttribute("admin") == null) {
+            response.sendRedirect(request.getContextPath() + "/richiestaLogin"); // Lo rispediamo fuori
             return;
         }
 

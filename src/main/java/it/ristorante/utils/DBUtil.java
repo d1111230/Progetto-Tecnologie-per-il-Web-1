@@ -8,8 +8,8 @@ public class DBUtil {
     
     
     private static final String URL = "jdbc:mysql://localhost:3306/ristorante_db?serverTimezone=UTC";
-    private static final String USER = "root"; 
-    private static final String PASSWORD = "root"; // Metti la tua password di MySQL
+    private static final String USER = "root";
+    private static final String PASSWORD = "root";
 
     public static Connection getConnection() throws SQLException {
         try {

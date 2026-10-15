@@ -7,7 +7,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.*;
+
+import it.ristorante.beans.Piatto;
+import it.ristorante.dao.PiattoDAO;
 
 @WebServlet("/privato/AggiungiPiatto")
 public class AggiungiPiatto extends HttpServlet {
@@ -24,7 +26,7 @@ public class AggiungiPiatto extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/privato/aggiungipiatto.jsp").forward(request, response);
     }
 
-    // 2. Il metodo doPost riceve i dati compilati dal form e li salva nel DB
+    // 2. Il metodo doPost riceve i dati compilati dal form e li salva nel DB (tramite il DAO)
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("admin") == null) {
@@ -40,24 +42,13 @@ public class AggiungiPiatto extends HttpServlet {
 
         if (nome != null && !nome.trim().isEmpty() && prezzoStr != null) {
             try {
-                double prezzo = Double.parseDouble(prezzoStr);
+                Piatto p = new Piatto();
+                p.setNome(nome);
+                p.setDescrizione(descrizione);
+                p.setPrezzo(Double.parseDouble(prezzoStr));
+                p.setCategoria(categoria);
 
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ristorante_db", "root", "root");
-                
-                // Query SQL per inserire i 4 campi reali della tua tabella piatti
-                String sql = "INSERT INTO piatti (nome, descrizione, prezzo, categoria) VALUES (?, ?, ?, ?)";
-                PreparedStatement ps = conn.prepareStatement(sql);
-                ps.setString(1, nome);
-                ps.setString(2, descrizione);
-                ps.setDouble(3, prezzo);
-                ps.setString(4, categoria);
-                
-                ps.executeUpdate();
-                
-                ps.close();
-                conn.close();
-                
+                new PiattoDAO().inserisci(p);
             } catch (Exception e) {
                 e.printStackTrace();
             }

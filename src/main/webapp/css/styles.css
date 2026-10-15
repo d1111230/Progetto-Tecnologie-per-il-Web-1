@@ -10981,7 +10981,7 @@ header.masthead .masthead-subheading {
   line-height: 1.5rem;
   margin-bottom: 25px;
   font-family: "Roboto Slab", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  color: #000000;
+  color: #ffc800;
 }
 header.masthead .masthead-heading {
   font-size: 3.25rem;
@@ -11409,7 +11409,7 @@ body.bg-bistrot-dark {
 /* Finestra segnaposto per la mappa dinamica del ristorante */
 .col-md-6 .box-mappa-bistrot {
     height: 250px; 
-    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500'); 
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://media.discordapp.net/attachments/1173950651923968000/1506596842937389056/width1376.png?ex=6a0ed726&is=6a0d85a6&hm=71163935a0f4b7119ec887fa7b248b9e19a10a4cfae4aef6f8066bf42a5bca16&=&format=webp&quality=lossless&width=1101&height=614'); 
     background-size: cover; 
     background-position: center;
     border: 1px solid rgba(197, 160, 89, 0.4);
@@ -11599,4 +11599,37 @@ body.admin-page {
 .bistrot-icona {
     font-size: 55px !important;  /* Qui controlli la grandezza dell'icona gialla */
     line-height: 120px !important; /* Deve essere uguale all'altezza del container per centrarla verticalmente */
+}
+
+
+/* Stile del Carosello Bistrot */
+.carousel-img-bistrot {
+    height: 700px; /* Altezza fissa per un look professionale */
+    object-fit: cover; /* Ritaglia l'immagine senza deformarla */
+    filter: brightness(0.8); /* Leggera scurita per far risaltare il testo */
+}
+
+.border-gold-thin {
+    border: 1px solid #ffc800;
+}
+
+.bg-caption-dark {
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid #ffc800;
+    width: fit-content;
+    margin: 0 auto 20px;
+}
+
+/* Effetto di transizione sulle immagini */
+.carousel-item img {
+    transition: transform 10s ease;
+}
+
+.carousel-item.active img {
+    transform: scale(1.1); /* Lento zoom quando l'immagine è attiva */
+}
+
+/* Indicatori dorati */
+.carousel-indicators [button] {
+    background-color: #ffc800 !important;
 }
