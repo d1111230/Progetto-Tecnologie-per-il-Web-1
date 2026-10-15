@@ -16,11 +16,6 @@
     
     <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" />
     
-    <style>
-        body { background-color: #212529; padding-top: 150px; }
-        .card-admin { background-color: #2c3034; border: 1px solid #ffc800; transition: 0.3s; margin-bottom: 20px;}
-        .card-admin:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(255, 200, 0, 0.2); }
-    </style>
 </head>
 <body class="admin-page bg-dark text-white">
 

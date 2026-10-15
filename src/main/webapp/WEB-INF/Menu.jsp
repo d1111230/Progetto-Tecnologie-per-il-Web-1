@@ -66,7 +66,7 @@
 
     <% if (!carrelloVuoto) { %>
        <div class="mt-4 p-3 rounded d-flex justify-content-between align-items-center box-totale-carrello">
-            <h5 class="mb-0 text-uppercase text-white" style="font-size: 0.9rem;">Totale Ordine:</h5>
+            <h5 class="mb-0 text-uppercase text-white totale-label">Totale Ordine:</h5>
             <h4 class="mb-0 text-warning fw-bold"><%= String.format("%.2f", totaleComplessivo) %>€</h4>
         </div>
 

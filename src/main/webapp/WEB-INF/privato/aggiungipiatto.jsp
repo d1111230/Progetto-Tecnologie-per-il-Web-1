@@ -6,17 +6,13 @@
     <title>Admin - Aggiungi Piatto</title>
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" />
-    <style>
-        body { background-color: #212529; padding-top: 130px; color: white; }
-        .form-admin { background-color: #2c3034; border: 1px solid #ffc800; max-width: 600px; margin: 0 auto; }
-    </style>
 </head>
 <body class="admin-page">
 
     <%@ include file="/WEB-INF/privato/navbar-admin.txt" %>
 
     <div class="container">
-        <div class="card form-admin p-4 shadow">
+        <div class="card form-admin form-admin-wide p-4 shadow">
             <h2 class="text-warning text-center mb-4"><i class="fas fa-plus-circle"></i> Aggiungi Nuovo Piatto</h2>
             
             <form action="${pageContext.request.contextPath}/privato/AggiungiPiatto" method="POST">

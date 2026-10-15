@@ -9,10 +9,6 @@
     <title>Admin - Registro Ordini</title>
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" />
-    <style>
-        body { background-color: #212529; padding-top: 130px; color: white; }
-        .table-admin { background-color: #2c3034; border: 1px solid #ffc800; }
-    </style>
 </head>
 <body class="admin-page">
 

@@ -2,10 +2,12 @@ package it.ristorante.servlet.privato;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.WebServlet;
 import java.io.IOException;
 
 import it.ristorante.dao.AdminDAO;
 
+@WebServlet("/login")
 public class Login extends HttpServlet {
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

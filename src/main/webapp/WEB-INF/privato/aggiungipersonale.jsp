@@ -6,10 +6,6 @@
     <title>Admin - Aggiungi Personale</title>
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" />
-    <style>
-        body { background-color: #212529; padding-top: 130px; color: white; }
-        .form-admin { background-color: #2c3034; border: 1px solid #ffc800; max-width: 500px; margin: 0 auto; }
-    </style>
 </head>
 <body class="admin-page">
 

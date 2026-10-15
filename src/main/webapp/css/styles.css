@@ -11633,3 +11633,41 @@ body.admin-page {
 .carousel-indicators [button] {
     background-color: #ffc800 !important;
 }
+
+
+/* ===== Area privata (admin) ===== */
+/* sfondo e spazio sotto la navbar sono gia' in "body.admin-page" piu' sopra */
+.admin-page {
+    color: white;
+}
+
+.card-admin,
+.form-admin,
+.table-admin {
+    background-color: #2c3034;
+    border: 1px solid #ffc800;
+}
+
+.card-admin {
+    transition: 0.3s;
+    margin-bottom: 20px;
+}
+
+.card-admin:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(255, 200, 0, 0.2);
+}
+
+.form-admin {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-admin-wide {
+    max-width: 600px;
+}
+
+/* ===== Menu pubblico: etichetta del totale nel carrello ===== */
+.totale-label {
+    font-size: 0.9rem;
+}
