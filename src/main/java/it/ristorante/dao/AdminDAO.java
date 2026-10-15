@@ -7,9 +7,6 @@ import java.sql.SQLException;
 
 import it.ristorante.utils.DBUtil;
 
-/**
- * Tutte le query sulla tabella "admin" (il personale che puo' entrare nell'area privata).
- */
 public class AdminDAO {
 
     /** true se esiste un admin con quell'username (l'email) e quella password. */

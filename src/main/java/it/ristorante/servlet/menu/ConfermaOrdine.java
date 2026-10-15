@@ -41,8 +41,7 @@ public class ConfermaOrdine extends HttpServlet {
 
         session.removeAttribute("carrello");
 
-        // Cookie "ricordami": salviamo nome ed email (non sensibili) per 30 giorni,
-        // cosi' il form di ordine si precompila automaticamente alla prossima visita.
+        // Cookie per precompilare il form alla prossima visita (30 giorni)
         Cookie cookieNome = new Cookie("nomeRitiro", nomeRitiro);
         cookieNome.setMaxAge(60 * 60 * 24 * 30);
         cookieNome.setPath(request.getContextPath() + "/");
@@ -53,8 +52,7 @@ public class ConfermaOrdine extends HttpServlet {
         cookieEmail.setPath(request.getContextPath() + "/");
         response.addCookie(cookieEmail);
 
-        // Passiamo l'esito come attributo della request e facciamo il forward
-        // verso la cartella protetta WEB-INF: la home apre il modal "Ordine Ricevuto!"
+        // La home apre il modal "Ordine Ricevuto!" quando trova questo attributo
         request.setAttribute("ordine", "successo");
         request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
     }

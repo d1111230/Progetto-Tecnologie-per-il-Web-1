@@ -1,9 +1,5 @@
 package it.ristorante.beans;
 
-/**
- * Una riga del carrello: un piatto, la quantita' e il prezzo.
- * Viene preparata dalla servlet cosi' la JSP si limita a stamparla.
- */
 public class RigaCarrello {
     private String nome;
     private int quantita;

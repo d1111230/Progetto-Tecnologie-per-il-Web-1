@@ -5,11 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Area Admin - Idea Bistrot</title>
-    <%-- 
-       Uso ${pageContext.request.contextPath} per evitare che il browser cerchi il CSS 
-       dentro la cartella '/privato/'. In questo modo il server calcola la radice del progetto
-       (/ProgettoTecnologie) e la grafica di Bootstrap si carica correttamente.
-    --%>
+    <%-- contextPath: percorso assoluto, altrimenti il CSS verrebbe cercato dentro /privato/ --%>
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />

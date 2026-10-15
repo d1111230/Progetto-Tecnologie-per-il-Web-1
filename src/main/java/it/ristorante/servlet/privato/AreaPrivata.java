@@ -12,14 +12,13 @@ public class AreaPrivata extends HttpServlet {
         
         HttpSession session = request.getSession(false);
         
-        // CONTROLLO DI SICUREZZA:
-        // Se l'attributo "admin" non esiste in sessione, significa che non ha fatto il login
+        // Se l'attributo "admin" non esiste in sessione, non ha fatto il login
         if (session == null || session.getAttribute("admin") == null) {
             response.sendRedirect(request.getContextPath() + "/richiestaLogin"); // Lo rispediamo fuori
             return;
         }
 
-        // Se è loggato, gli mostriamo la plancia di comando
+        // Loggato: mostra la dashboard
         request.getRequestDispatcher("/WEB-INF/privato/AreaPrivata.jsp").forward(request, response);
     }
 }

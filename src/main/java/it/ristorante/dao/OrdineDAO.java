@@ -12,17 +12,9 @@ import java.util.Map;
 import it.ristorante.beans.Ordine;
 import it.ristorante.utils.DBUtil;
 
-/**
- * Tutte le query sulle tabelle "ordini" e "dettagli_ordini".
- */
 public class OrdineDAO {
 
-    /**
-     * Salva un ordine completo in UNA transazione: o vengono scritte la testata
-     * e tutte le righe, oppure (rollback) non viene scritto niente.
-     *
-     * @param carrello mappa nome piatto -> quantita'
-     */
+    // Salva testata e dettagli in un'unica transazione (commit oppure rollback)
     public void salvaOrdine(String emailCliente, String nomeRitiro, String oraRitiro,
                             Map<String, Integer> carrello) throws SQLException {
 

@@ -8,11 +8,7 @@
             <span class="badge bg-warning text-dark">
             
             <% 
-            /*
-               1. Condizione: Controlla se l'oggetto "carrello" esiste nella sessione attuale.
-               2. Se esiste (?): Esegue il cast a java.util.Map e ne calcola la dimensione (.size()).
-               3. Se NON esiste (:): Stampa semplicemente 0.
-            */
+            // Numero di piatti nel carrello: 0 se il carrello non esiste ancora
         %>
             
                 <%= (session.getAttribute("carrello") != null) ? ((java.util.Map)session.getAttribute("carrello")).size() : 0 %>

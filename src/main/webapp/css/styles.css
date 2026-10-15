@@ -11595,7 +11595,7 @@ body.admin-page {
     border-width: 3px !important;
 }
 
-/* Questa è la riga magica: ingrandisce l'icona interna mantenendola perfettamente centrata */
+/* Ingrandisce l'icona interna mantenendola centrata */
 .bistrot-icona {
     font-size: 55px !important;  /* Qui controlli la grandezza dell'icona gialla */
     line-height: 120px !important; /* Deve essere uguale all'altezza del container per centrarla verticalmente */

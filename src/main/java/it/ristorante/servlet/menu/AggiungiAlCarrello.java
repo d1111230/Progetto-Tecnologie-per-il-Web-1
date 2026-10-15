@@ -10,10 +10,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Servlet che gestisce l'aggiunta dei prodotti nel carrello in sessione.
- * Non scrive nel database, mantiene i dati finché il browser è aperto.
- */
 @WebServlet("/AggiungiAlCarrello")
 public class AggiungiAlCarrello extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -41,13 +37,14 @@ public class AggiungiAlCarrello extends HttpServlet {
         // 4. Salviamo il carrello aggiornato nella sessione
         session.setAttribute("carrello", carrello);
 
-        // 5. 
+        // Torna al menu, sulla tab della categoria
         if (categoria != null && !categoria.isEmpty()) {
             response.sendRedirect("mostraMenu#" + categoria);
         } else {
             response.sendRedirect("mostraMenu");
         }
-        }
+    }
+
     // Gestiamo anche il GET per sicurezza, rimandando semplicemente al menu
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.sendRedirect("mostraMenu");

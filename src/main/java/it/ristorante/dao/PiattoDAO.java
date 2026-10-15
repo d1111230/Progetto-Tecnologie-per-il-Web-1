@@ -10,10 +10,6 @@ import java.util.List;
 import it.ristorante.beans.Piatto;
 import it.ristorante.utils.DBUtil;
 
-/**
- * Tutte le query sulla tabella "piatti".
- * Le servlet non scrivono SQL: chiamano questi metodi.
- */
 public class PiattoDAO {
 
     /** Restituisce tutti i piatti del menu. */

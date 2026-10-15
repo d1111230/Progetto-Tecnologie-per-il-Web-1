@@ -39,14 +39,13 @@ public class AggiungiPersonale extends HttpServlet {
 
         if (utente != null && !utente.trim().isEmpty() && pass != null && !pass.trim().isEmpty()) {
             try {
-                // In un'app reale qui si salverebbe un hash (es. BCrypt); per scopi scolastici la password e' in chiaro
                 new AdminDAO().inserisci(utente.trim(), pass.trim());
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
-        // Una volta inserito il dipendente, lo reindirizziamo alla dashboard dell'Area Privata
+        // Torna alla dashboard
         response.sendRedirect(request.getContextPath() + "/privato/AreaPrivata");
     }
 }

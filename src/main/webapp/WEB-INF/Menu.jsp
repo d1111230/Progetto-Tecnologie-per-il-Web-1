@@ -71,8 +71,7 @@
         </div>
 
         <%
-            // Cookie "ricordami": se il cliente ha già ordinato in passato, precompiliamo
-            // nome ed email leggendo i cookie salvati da ConfermaOrdine (non sono dati sensibili).
+            // Se il cliente ha già ordinato, precompila nome ed email dai cookie di ConfermaOrdine
             String nomeSalvato = "";
             String emailSalvata = "";
             Cookie[] cookiesOrdine = request.getCookies();
