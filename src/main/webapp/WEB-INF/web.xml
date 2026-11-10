@@ -5,18 +5,7 @@
     <welcome-file>/WEB-INF/index.jsp</welcome-file>
   </welcome-file-list>
 
-  <!--
-    Nota: tutte le Servlet sono registrate con l'annotazione @WebServlet
-    direttamente nella loro classe Java (es. "/privato/GestioneMenu"), quindi qui
-    non va ripetuto nessun <servlet>/<servlet-mapping> per lo stesso URL.
-  -->
 
-  <!--
-    Configurazione del cookie di sessione (JSESSIONID) usato per il login.
-    - session-timeout: dopo 30 minuti di inattività la sessione (e quindi il login) scade automaticamente.
-    - http-only: impedisce a JavaScript lato client di leggere il cookie di sessione,
-      proteggendo il JSESSIONID da furti tramite attacchi XSS (Session Hijacking).
-  -->
   <session-config>
     <session-timeout>30</session-timeout>
     <cookie-config>

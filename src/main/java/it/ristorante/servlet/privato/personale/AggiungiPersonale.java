@@ -21,7 +21,6 @@ public class AggiungiPersonale extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/richiestaLogin");
             return;
         }
-        
         request.getRequestDispatcher("/WEB-INF/privato/aggiungipersonale.jsp").forward(request, response);
     }
 
